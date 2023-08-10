@@ -7,8 +7,8 @@ import { lstat, rm, symlink, writeFile } from "fs/promises";
 import "jest-specific-snapshot";
 import path from "path";
 import tmp from "tmp-promise";
-import { ExpressCustomConfigSchema } from "../custom-config/schema/ExpressCustomConfigSchema";
 import { ExpressGeneratorCli } from "../ExpressGeneratorCli";
+import { ExpressCustomConfigSchema } from "../custom-config/schema/ExpressCustomConfigSchema";
 
 const FILENAMES_TO_IGNORE_FOR_SNAPSHOT = new Set([".pnp.cjs", ".pnp.loader.mjs", ".yarn", "yarn.lock", "node_modules"]);
 
@@ -42,6 +42,15 @@ const FIXTURES: FixtureInfo[] = [
             doNotHandleUnrecognizedErrors: true,
             includeUtilsOnUnionMembers: true,
             includeOtherInUnionTypes: true,
+        },
+    },
+    {
+        path: "output-source-files-simple",
+        orgName: "fern",
+        outputMode: "local",
+        apiName: "api",
+        customConfig: {
+            outputSourceFiles: true,
         },
     },
     {
